@@ -37,3 +37,21 @@ export function wrapUser(user) {
       ]
    });
 }
+
+export function wrapAlbum(album) {
+   return createElement({
+      type: 'div',
+      classNames: ['card'],
+      children: [
+         createElement({ type: 'div', classNames: ['name'], innerText: album.title }),
+         createElement({
+            type: 'a',
+            classNames: ['show'],
+            innerText: 'View album',
+            attributes: {
+               href: `#users/${album.userId}/${album.id}`
+            }
+         })
+      ]
+   });
+}

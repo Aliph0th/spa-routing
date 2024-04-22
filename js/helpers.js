@@ -1,8 +1,16 @@
 import { API_URL } from './constants.js';
 
-export async function fetchData(endpoint) {
+export async function fetchData(endpoint, query = {}) {
+   const filteredQuery = Object.entries(query).reduce((accum, [key, value]) => {
+      if (value) {
+         accum[key] = value.toString();
+      }
+      return accum;
+   }, {});
    try {
-      const response = await fetch(`${API_URL}/${endpoint}`);
+      const response = await fetch(
+         `${API_URL}/${endpoint}?${new URLSearchParams(filteredQuery)}`
+      );
       return await response.json();
    } catch (error) {
       //TODO:FIXME:

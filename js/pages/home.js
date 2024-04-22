@@ -9,7 +9,7 @@ export async function Home() {
    pageElement.appendChild(
       createElement({
          type: 'div',
-         classNames: ['userContainer'],
+         classNames: ['container'],
          children: users.map(wrapUser)
       })
    );
