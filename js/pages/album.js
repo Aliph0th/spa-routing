@@ -10,7 +10,12 @@ export async function Album(userId) {
    if (!albums.length) {
       return NotFound();
    }
-   pageElement.appendChild(
+   pageElement.append(
+      createElement({
+         type: 'h1',
+         classNames: ['title'],
+         innerText: `Albums #${userId}`
+      }),
       createElement({
          type: 'div',
          classNames: ['container'],

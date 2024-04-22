@@ -6,7 +6,8 @@ export async function Home() {
    toggleSpinner(true);
    const users = await fetchData('users');
    toggleSpinner(false);
-   pageElement.appendChild(
+   pageElement.append(
+      createElement({ type: 'h1', classNames: ['title'], innerText: 'Users' }),
       createElement({
          type: 'div',
          classNames: ['container'],

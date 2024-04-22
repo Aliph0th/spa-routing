@@ -55,3 +55,18 @@ export function wrapAlbum(album) {
       ]
    });
 }
+
+export function wrapPhoto(photo) {
+   return createElement({
+      type: 'div',
+      classNames: ['photo'],
+      children: [
+         createElement({ type: 'div', classNames: ['name'], innerText: photo.title }),
+         createElement({
+            type: 'img',
+            classNames: ['image'],
+            attributes: { src: photo.thumbnailUrl }
+         })
+      ]
+   });
+}
