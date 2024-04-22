@@ -67,12 +67,12 @@ export function parseBreadcrumbs(url) {
 export function createElement({
    type,
    classNames = [],
-   innerText = '',
+   innerHTML = '',
    children = [],
    attributes = {}
 }) {
    const element = document.createElement(type);
-   element.innerText = innerText;
+   element.innerHTML = innerHTML;
    if (classNames.length) {
       element.className = classNames.join(' ');
    }

@@ -14,7 +14,7 @@ export async function Album(userId) {
       createElement({
          type: 'h1',
          classNames: ['title'],
-         innerText: `Albums #${userId}`
+         innerHTML: `Albums #${userId}`
       }),
       createElement({
          type: 'div',

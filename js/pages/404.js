@@ -3,6 +3,6 @@ import { createElement } from '../utils/helpers.js';
 
 export function NotFound() {
    pageElement.appendChild(
-      createElement({ type: 'h1', classNames: ['notFound'], innerText: 'Page not found' })
+      createElement({ type: 'h1', classNames: ['notFound'], innerHTML: 'Page not found' })
    );
 }

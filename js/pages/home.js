@@ -7,7 +7,7 @@ export async function Home() {
    const users = await getUsers();
    toggleSpinner(false);
    pageElement.append(
-      createElement({ type: 'h1', classNames: ['title'], innerText: 'Users' }),
+      createElement({ type: 'h1', classNames: ['title'], innerHTML: 'Users' }),
       createElement({
          type: 'div',
          classNames: ['container'],

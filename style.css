@@ -47,7 +47,8 @@ a:hover {
    padding: 1rem;
 }
 .separator {
-   margin: 0 10px;
+   margin: 0 8px;
+   color: #524eb7;
 }
 .card {
    padding: 0.5rem;

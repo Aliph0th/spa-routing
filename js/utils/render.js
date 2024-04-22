@@ -16,13 +16,17 @@ export function renderBreadcrumbs(breadcrumbs) {
          createElement({
             type: 'a',
             classNames: ['crumb'],
-            innerText: breadcrumbs[i].title,
+            innerHTML: breadcrumbs[i].title,
             attributes: { href: breadcrumbs[i].href }
          })
       );
       if (i < breadcrumbs.length - 1) {
          breadcrumbsElement.appendChild(
-            createElement({ type: 'span', classNames: ['separator'], innerText: '>' })
+            createElement({
+               type: 'span',
+               classNames: ['separator'],
+               innerHTML: '&#x279c;'
+            })
          );
       }
    }
@@ -38,17 +42,17 @@ export function wrapUser(user) {
       type: 'div',
       classNames: ['card'],
       children: [
-         createElement({ type: 'div', classNames: ['name'], innerText: user.name }),
+         createElement({ type: 'div', classNames: ['name'], innerHTML: user.name }),
          createElement({
             type: 'div',
             classNames: ['tag'],
-            innerText: `@${user.username}`
+            innerHTML: `@${user.username}`
          }),
-         createElement({ type: 'div', classNames: ['email'], innerText: user.email }),
+         createElement({ type: 'div', classNames: ['email'], innerHTML: user.email }),
          createElement({
             type: 'a',
             classNames: ['show'],
-            innerText: 'Go to albums',
+            innerHTML: 'Go to albums',
             attributes: {
                href: `#users/${user.id}`
             }
@@ -62,11 +66,11 @@ export function wrapAlbum(album) {
       type: 'div',
       classNames: ['card'],
       children: [
-         createElement({ type: 'div', classNames: ['name'], innerText: album.title }),
+         createElement({ type: 'div', classNames: ['name'], innerHTML: album.title }),
          createElement({
             type: 'a',
             classNames: ['show'],
-            innerText: 'View album',
+            innerHTML: 'View album',
             attributes: {
                href: `#users/${album.userId}/${album.id}`
             }
@@ -80,7 +84,7 @@ export function wrapPhoto(photo) {
       type: 'div',
       classNames: ['photo'],
       children: [
-         createElement({ type: 'div', classNames: ['name'], innerText: photo.title }),
+         createElement({ type: 'div', classNames: ['name'], innerHTML: photo.title }),
          createElement({
             type: 'img',
             classNames: ['image'],

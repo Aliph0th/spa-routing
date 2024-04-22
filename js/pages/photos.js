@@ -13,7 +13,7 @@ export async function Photos(albumId) {
       createElement({
          type: 'h1',
          classNames: ['title'],
-         innerText: `Photos #${albumId}`
+         innerHTML: `Photos #${albumId}`
       }),
       createElement({
          type: 'div',
