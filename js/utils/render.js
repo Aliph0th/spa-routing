@@ -1,4 +1,4 @@
-import { pageElement } from '../variables/constants.js';
+import { breadcrumbsElement, pageElement } from '../variables/constants.js';
 import { createElement } from './helpers.js';
 
 export function toggleSpinner(enabled) {
@@ -10,8 +10,27 @@ export function toggleSpinner(enabled) {
    pageElement.querySelectorAll('.spinner').forEach(el => el.remove());
 }
 
-export function clearPage() {
+export function renderBreadcrumbs(breadcrumbs) {
+   for (const i in breadcrumbs) {
+      breadcrumbsElement.appendChild(
+         createElement({
+            type: 'a',
+            classNames: ['crumb'],
+            innerText: breadcrumbs[i].title,
+            attributes: { href: breadcrumbs[i].href }
+         })
+      );
+      if (i < breadcrumbs.length - 1) {
+         breadcrumbsElement.appendChild(
+            createElement({ type: 'span', classNames: ['separator'], innerText: '>' })
+         );
+      }
+   }
+}
+
+export function clear() {
    pageElement.innerHTML = '';
+   breadcrumbsElement.innerHTML = '';
 }
 
 export function wrapUser(user) {

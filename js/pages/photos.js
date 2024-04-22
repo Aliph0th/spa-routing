@@ -1,4 +1,4 @@
-import { pageElement } from '../constants.js';
+import { pageElement } from '../variables/constants.js';
 import { createElement, getPhotosById } from '../utils/helpers.js';
 import { toggleSpinner, wrapPhoto } from '../utils/render.js';
 
@@ -6,7 +6,7 @@ export async function Photos(albumId) {
    toggleSpinner(true);
    const photos = await getPhotosById(albumId);
    toggleSpinner(false);
-   if (!photos.length) {
+   if (!photos || !photos.length) {
       return NotFound();
    }
    pageElement.append(
@@ -17,7 +17,6 @@ export async function Photos(albumId) {
       }),
       createElement({
          type: 'div',
-         classNames: ['photoContainer'],
          children: photos.map(wrapPhoto)
       })
    );

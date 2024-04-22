@@ -1,4 +1,4 @@
-import { pageElement } from '../constants.js';
+import { pageElement } from '../variables/constants.js';
 import { createElement, getUsers } from '../utils/helpers.js';
 import { toggleSpinner, wrapUser } from '../utils/render.js';
 

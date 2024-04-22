@@ -1,4 +1,4 @@
-import { API_URL } from '../variables/constants.js';
+import { API_URL, PAGES_LIST } from '../variables/constants.js';
 import { CACHE } from '../variables/shared.js';
 
 export async function fetchData(endpoint, query = {}) {
@@ -51,6 +51,18 @@ export const getPhotosById = async albumId =>
    memoFetch('photos', { albumId, _limit: 10 }, 'id', 'title', 'thumbnailUrl');
 
 export const getID = (url, number) => url.split('/')[number];
+
+export function parseBreadcrumbs(url) {
+   const parsed = [];
+   const parts = url.split('/');
+   let urlParts = '';
+   for (const i in parts) {
+      urlParts += `${i === '0' ? '' : '/'}${parts[i]}`;
+      const page = PAGES_LIST.find(p => p.check(urlParts));
+      parsed.push({ title: page.title, href: `#${urlParts}` });
+   }
+   return parsed;
+}
 
 export function createElement({
    type,
