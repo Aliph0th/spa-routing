@@ -1,4 +1,4 @@
-import { pageElement } from './constants.js';
+import { pageElement } from '../variables/constants.js';
 import { createElement } from './helpers.js';
 
 export function toggleSpinner(enabled) {

@@ -1,6 +1,6 @@
 import { pageElement } from '../constants.js';
-import { createElement, getPhotosById } from '../helpers.js';
-import { toggleSpinner, wrapPhoto } from '../render.js';
+import { createElement, getPhotosById } from '../utils/helpers.js';
+import { toggleSpinner, wrapPhoto } from '../utils/render.js';
 
 export async function Photos(albumId) {
    toggleSpinner(true);

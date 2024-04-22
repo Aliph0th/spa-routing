@@ -1,6 +1,6 @@
 import { pageElement } from '../constants.js';
-import { createElement, getAlbumsById } from '../helpers.js';
-import { toggleSpinner, wrapAlbum } from '../render.js';
+import { createElement, getAlbumsById } from '../utils/helpers.js';
+import { toggleSpinner, wrapAlbum } from '../utils/render.js';
 import { NotFound } from './404.js';
 
 export async function Album(userId) {

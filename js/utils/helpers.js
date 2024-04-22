@@ -1,5 +1,5 @@
-import { API_URL } from './constants.js';
-import { CACHE } from './shared.js';
+import { API_URL } from '../variables/constants.js';
+import { CACHE } from '../variables/shared.js';
 
 export async function fetchData(endpoint, query = {}) {
    const filteredQuery = Object.entries(query).reduce((accum, [key, value]) => {
@@ -48,7 +48,7 @@ export async function getUsers() {
 export const getAlbumsById = async userId =>
    memoFetch('albums', { userId }, 'id', 'userId', 'title');
 export const getPhotosById = async albumId =>
-   memoFetch('photos', { albumId }, 'id', 'title', 'thumbnailUrl');
+   memoFetch('photos', { albumId, _limit: 10 }, 'id', 'title', 'thumbnailUrl');
 
 export const getID = (url, number) => url.split('/')[number];
 

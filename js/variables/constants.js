@@ -1,8 +1,8 @@
-import { NotFound } from './pages/404.js';
-import { Home } from './pages/home.js';
-import { Album } from './pages/album.js';
-import { Photos } from './pages/photos.js';
-import { getID } from './helpers.js';
+import { NotFound } from '../pages/404.js';
+import { Home } from '../pages/home.js';
+import { Album } from '../pages/album.js';
+import { Photos } from '../pages/photos.js';
+import { getID } from '../utils/helpers.js';
 
 export const API_URL = 'https://jsonplaceholder.typicode.com';
 

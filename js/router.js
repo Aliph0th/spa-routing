@@ -1,5 +1,5 @@
-import { PAGES } from './constants.js';
-import { clearPage } from './render.js';
+import { PAGES } from './variables/constants.js';
+import { clearPage } from './utils/render.js';
 
 export function router(url) {
    if (!url) {
