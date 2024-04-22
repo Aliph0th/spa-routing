@@ -1,10 +1,10 @@
 import { pageElement } from '../constants.js';
-import { createElement, fetchData } from '../helpers.js';
+import { createElement, getPhotosById } from '../helpers.js';
 import { toggleSpinner, wrapPhoto } from '../render.js';
 
 export async function Photos(albumId) {
    toggleSpinner(true);
-   const photos = await fetchData(`photos`, { albumId });
+   const photos = await getPhotosById(albumId);
    toggleSpinner(false);
    if (!photos.length) {
       return NotFound();

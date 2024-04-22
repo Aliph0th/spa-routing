@@ -1,11 +1,11 @@
 import { pageElement } from '../constants.js';
-import { createElement, fetchData } from '../helpers.js';
+import { createElement, getAlbumsById } from '../helpers.js';
 import { toggleSpinner, wrapAlbum } from '../render.js';
 import { NotFound } from './404.js';
 
 export async function Album(userId) {
    toggleSpinner(true);
-   const albums = await fetchData(`albums`, { userId });
+   const albums = await getAlbumsById(userId);
    toggleSpinner(false);
    if (!albums.length) {
       return NotFound();
