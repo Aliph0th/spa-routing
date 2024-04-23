@@ -3,3 +3,5 @@ export const CACHE = {
    albums: {},
    photos: {}
 };
+
+export const listenersPool = [];

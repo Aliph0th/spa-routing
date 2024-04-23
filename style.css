@@ -96,3 +96,9 @@ a:hover {
    padding: 1rem 0;
    text-align: center;
 }
+.end {
+   text-align: center;
+   color: #9b9b9b;
+   font-size: 1.3rem;
+   margin-bottom: 1rem;
+}

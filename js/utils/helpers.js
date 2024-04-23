@@ -1,4 +1,4 @@
-import { API_URL, PAGES_LIST } from '../variables/constants.js';
+import { API_URL, PAGES_LIST, PHOTOS_PER_PAGE } from '../variables/constants.js';
 import { CACHE } from '../variables/shared.js';
 
 export async function fetchData(endpoint, query = {}) {
@@ -19,16 +19,7 @@ export async function fetchData(endpoint, query = {}) {
    }
 }
 
-export async function memoFetch(data, query, ...filter) {
-   const id = Object.values(query)[0];
-   if (!CACHE[data][id]) {
-      const result = await fetchData(data, query);
-      if (result.length) {
-         CACHE[data][id] = result.map(res => filterObject(res, ...filter));
-      }
-   }
-   return CACHE[data][id];
-}
+export async function memoFetch(data, query, ...filter) {}
 
 export function filterObject(object, ...props) {
    return Object.keys(object)
@@ -45,10 +36,34 @@ export async function getUsers() {
    }
    return CACHE.users;
 }
-export const getAlbumsById = async userId =>
-   memoFetch('albums', { userId }, 'id', 'userId', 'title');
-export const getPhotosById = async albumId =>
-   memoFetch('photos', { albumId, _limit: 10 }, 'id', 'title', 'thumbnailUrl');
+export const getAlbumsById = async userId => {
+   if (!CACHE.albums[userId]) {
+      const result = await fetchData('albums', { userId });
+      if (result.length) {
+         CACHE.albums[userId] = result.map(res =>
+            filterObject(res, 'id', 'title', 'userId')
+         );
+      }
+   }
+   return CACHE.albums[userId];
+};
+export const getPhotosById = async (albumId, position) => {
+   console.log(CACHE);
+   CACHE.photos[albumId] ||= [];
+   if (!CACHE.photos[albumId].slice(position, position + PHOTOS_PER_PAGE).length) {
+      const result = await fetchData('photos', {
+         albumId,
+         _start: position,
+         _limit: PHOTOS_PER_PAGE
+      });
+      if (result.length) {
+         CACHE.photos[albumId].push(
+            ...result.map(res => filterObject(res, 'id', 'title', 'thumbnailUrl'))
+         );
+      }
+   }
+   return CACHE.photos[albumId].slice(position, position + PHOTOS_PER_PAGE);
+};
 
 export const getID = (url, number) => url.split('/')[number];
 
@@ -85,4 +100,8 @@ export function createElement({
       }
    });
    return element;
+}
+
+export function redirectTo404() {
+   window.location.hash = '#404';
 }

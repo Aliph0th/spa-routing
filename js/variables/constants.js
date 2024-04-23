@@ -5,6 +5,7 @@ import { Photos } from '../pages/photos.js';
 import { getID } from '../utils/helpers.js';
 
 export const API_URL = 'https://jsonplaceholder.typicode.com';
+export const PHOTOS_PER_PAGE = 10;
 
 export const pageElement = document.getElementById('page');
 export const breadcrumbsElement = document.getElementById('breadcrumbs');
