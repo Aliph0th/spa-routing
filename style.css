@@ -96,6 +96,11 @@ a:hover {
    padding: 1rem 0;
    text-align: center;
 }
+.notFound + a {
+   display: block;
+   width: fit-content;
+   margin: 0 auto;
+}
 .end {
    text-align: center;
    color: #9b9b9b;
