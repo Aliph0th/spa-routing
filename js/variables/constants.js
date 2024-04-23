@@ -32,7 +32,7 @@ export const PAGES_LIST = [
    },
    {
       title: '404',
-      check: () => true,
+      check: url => /^\/404$/.test(url) || true,
       render: NotFound
    }
 ];

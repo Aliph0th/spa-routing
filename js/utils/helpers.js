@@ -48,7 +48,6 @@ export const getAlbumsById = async userId => {
    return CACHE.albums[userId];
 };
 export const getPhotosById = async (albumId, position) => {
-   console.log(CACHE);
    CACHE.photos[albumId] ||= [];
    if (!CACHE.photos[albumId].slice(position, position + PHOTOS_PER_PAGE).length) {
       const result = await fetchData('photos', {
@@ -103,5 +102,5 @@ export function createElement({
 }
 
 export function redirectTo404() {
-   window.location.hash = '#404';
+   window.location.hash = '#/404';
 }

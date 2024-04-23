@@ -4,4 +4,4 @@ export const CACHE = {
    photos: {}
 };
 
-export const listenersPool = [];
+export const scrollListenersPool = [];

@@ -1,12 +1,13 @@
 import { pageElement } from '../variables/constants.js';
 import { createElement, getPhotosById, redirectTo404 } from '../utils/helpers.js';
 import { toggleSpinner, wrapPhoto } from '../utils/render.js';
-import { listenersPool } from '../variables/shared.js';
+import { scrollListenersPool } from '../variables/shared.js';
 
 export async function Photos(albumId) {
    let position = 0;
    let isFinished = false;
    let isLoading = false;
+
    const getData = async (wasScrolled = false) => {
       toggleSpinner(true);
       isLoading = true;
@@ -14,7 +15,8 @@ export async function Photos(albumId) {
       isLoading = false;
       toggleSpinner(false);
       if (!photos?.length && !wasScrolled) {
-         return redirectTo404();
+         redirectTo404();
+         return [];
       }
       if (!photos?.length && wasScrolled) {
          isFinished = true;
@@ -49,7 +51,8 @@ export async function Photos(albumId) {
       }
    };
    window.addEventListener('scroll', handleScroll);
-   listenersPool.push(handleScroll);
+   scrollListenersPool.push(handleScroll);
+
    pageElement.appendChild(
       createElement({
          type: 'h1',
