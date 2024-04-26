@@ -13,6 +13,8 @@ export function router(url) {
    }
    const page = PAGES_LIST.find(p => p.check(url));
    clear();
-   renderBreadcrumbs(parseBreadcrumbs(url));
+   if (page.title !== '404') {
+      renderBreadcrumbs(parseBreadcrumbs(url));
+   }
    page.render(url);
 }

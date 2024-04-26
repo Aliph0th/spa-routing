@@ -70,8 +70,11 @@ export function parseBreadcrumbs(url) {
    const parsed = [];
    const parts = url.split('/');
    let urlParts = '';
-   for (const i in parts) {
-      urlParts += `${i === '0' ? '' : '/'}${parts[i]}`;
+   for (let i = 0; i < parts.length; i++) {
+      if (!parts[i]) {
+         continue;
+      }
+      urlParts += `${!i ? '' : '/'}${parts[i]}`;
       const page = PAGES_LIST.find(p => p.check(urlParts));
       parsed.push({ title: page.title, href: `#${urlParts}` });
    }
