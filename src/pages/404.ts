@@ -1,5 +1,5 @@
-import { pageElement } from '../variables/constants.js';
-import { createElement } from '../utils/helpers.js';
+import { pageElement } from '../variables/constants';
+import { createElement } from '../utils/helpers';
 
 export function NotFound() {
    pageElement.append(

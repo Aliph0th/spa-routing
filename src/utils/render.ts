@@ -1,8 +1,12 @@
-import { breadcrumbsElement, pageElement } from '../variables/constants.js';
-import { createElement } from './helpers.js';
+import { IAlbum } from '../interfaces/album';
+import { IBreadcrumb } from '../interfaces/breadcrumbs';
+import { IPhoto } from '../interfaces/photo';
+import { IUser } from '../interfaces/user';
+import { breadcrumbsElement, pageElement } from '../variables/constants';
+import { createElement } from './helpers';
 
-export function toggleSpinner(enabled) {
-   if (enabled) {
+export function toggleSpinner(isEnabled) {
+   if (isEnabled) {
       const spinner = createElement({ type: 'div', classNames: ['spinner'] });
       pageElement.appendChild(spinner);
       return;
@@ -10,8 +14,8 @@ export function toggleSpinner(enabled) {
    pageElement.querySelectorAll('.spinner').forEach(el => el.remove());
 }
 
-export function renderBreadcrumbs(breadcrumbs) {
-   for (const i in breadcrumbs) {
+export function renderBreadcrumbs(breadcrumbs: IBreadcrumb[]) {
+   for (let i = 0; i < breadcrumbs.length; i++) {
       breadcrumbsElement.appendChild(
          createElement({
             type: 'a',
@@ -37,7 +41,7 @@ export function clear() {
    breadcrumbsElement.innerHTML = '';
 }
 
-export function wrapUser(user) {
+export function wrapUser(user: IUser) {
    return createElement({
       type: 'div',
       classNames: ['card'],
@@ -61,7 +65,7 @@ export function wrapUser(user) {
    });
 }
 
-export function wrapAlbum(album) {
+export function wrapAlbum(album: IAlbum) {
    return createElement({
       type: 'div',
       classNames: ['card'],
@@ -79,7 +83,7 @@ export function wrapAlbum(album) {
    });
 }
 
-export function wrapPhoto(photo) {
+export function wrapPhoto(photo: IPhoto) {
    return createElement({
       type: 'div',
       classNames: ['photo'],
@@ -88,7 +92,7 @@ export function wrapPhoto(photo) {
          createElement({
             type: 'img',
             classNames: ['image'],
-            attributes: { src: photo.thumbnailUrl }
+            attributes: { src: photo.thumbnailUrl, width: 150, height: 150 }
          })
       ]
    });

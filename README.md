@@ -2,7 +2,7 @@
 
 ![alt text](https://i.imgur.com/v4eq2ia.png)
 
-This is a Single Page Application (SPA) project built with JavaScript. It utilizes a routing system to load data from [jsonplaceholder](https://jsonplaceholder.typicode.com). The project includes the following pages:
+This is a Single Page Application (SPA) project built with TypeScript. It utilizes a routing system to load data from [jsonplaceholder](https://jsonplaceholder.typicode.com). The project includes the following pages:
 
 -  **Home Page**: Displays a list of users.
 -  **User Albums Page**: Displays the albums of a specific user.

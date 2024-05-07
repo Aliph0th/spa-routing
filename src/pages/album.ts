@@ -1,12 +1,12 @@
-import { pageElement } from '../variables/constants.js';
-import { createElement, getAlbumsById, redirectTo404 } from '../utils/helpers.js';
-import { toggleSpinner, wrapAlbum } from '../utils/render.js';
+import { pageElement } from '../variables/constants';
+import { createElement, getAlbumsById, isUserExists, redirectTo404 } from '../utils/helpers';
+import { toggleSpinner, wrapAlbum } from '../utils/render';
 
-export async function Album(userId) {
+export async function Album(userId: number) {
    toggleSpinner(true);
    const albums = await getAlbumsById(userId);
    toggleSpinner(false);
-   if (!albums?.length) {
+   if (!albums?.length || !isUserExists(userId)) {
       return redirectTo404();
    }
    pageElement.append(

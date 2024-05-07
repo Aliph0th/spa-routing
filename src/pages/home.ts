@@ -1,6 +1,6 @@
-import { pageElement } from '../variables/constants.js';
-import { createElement, getUsers } from '../utils/helpers.js';
-import { toggleSpinner, wrapUser } from '../utils/render.js';
+import { pageElement } from '../variables/constants';
+import { createElement, getUsers } from '../utils/helpers';
+import { toggleSpinner, wrapUser } from '../utils/render';
 
 export async function Home() {
    toggleSpinner(true);

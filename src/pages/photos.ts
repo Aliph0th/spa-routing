@@ -1,12 +1,16 @@
-import { pageElement } from '../variables/constants.js';
-import { createElement, getPhotosById, redirectTo404 } from '../utils/helpers.js';
-import { toggleSpinner, wrapPhoto } from '../utils/render.js';
-import { scrollListenersPool } from '../variables/shared.js';
+import { pageElement } from '../variables/constants';
+import { createElement, getPhotosById, isUserExists, redirectTo404 } from '../utils/helpers';
+import { toggleSpinner, wrapPhoto } from '../utils/render';
+import { scrollListenersPool } from '../variables/shared';
 
-export async function Photos(albumId) {
+export async function Photos(userId: number, albumId: number) {
    let position = 0;
    let isFinished = false;
    let isLoading = false;
+
+   if (!isUserExists(userId)) {
+      return redirectTo404();
+   }
 
    const getData = async (wasScrolled = false) => {
       toggleSpinner(true);
