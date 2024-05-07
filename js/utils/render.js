@@ -72,7 +72,7 @@ export function wrapAlbum(album) {
             classNames: ['show'],
             innerHTML: 'View album',
             attributes: {
-               href: `#users/${album.userId}/${album.id}`
+               href: `#users/${album.userId}/albums/${album.id}`
             }
          })
       ]

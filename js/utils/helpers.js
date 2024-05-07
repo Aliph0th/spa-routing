@@ -14,12 +14,9 @@ export async function fetchData(endpoint, query = {}) {
       );
       return await response.json();
    } catch (error) {
-      //TODO:FIXME:
       console.error(error);
    }
 }
-
-export async function memoFetch(data, query, ...filter) {}
 
 export function filterObject(object, ...props) {
    return Object.keys(object)
@@ -64,21 +61,21 @@ export const getPhotosById = async (albumId, position) => {
    return CACHE.photos[albumId].slice(position, position + PHOTOS_PER_PAGE);
 };
 
-export const getID = (url, number) => url.split('/')[number];
+export const getID = (url, tag) => {
+   const parts = url.split('/');
+   return +parts[parts.indexOf(tag) + 1];
+};
 
 export function parseBreadcrumbs(url) {
-   const parsed = [];
    const parts = url.split('/');
-   let urlParts = '';
-   for (let i = 0; i < parts.length; i++) {
-      if (!parts[i]) {
-         continue;
+   return parts.reduce((breadcrumbs, _, i) => {
+      const url = parts.slice(0, i + 1).join('/');
+      const page = PAGES_LIST.find(p => p.check(url));
+      if (url && page.title !== '404') {
+         breadcrumbs.push({ title: page.title, href: `#${url}` });
       }
-      urlParts += `${!i ? '' : '/'}${parts[i]}`;
-      const page = PAGES_LIST.find(p => p.check(urlParts));
-      parsed.push({ title: page.title, href: `#${urlParts}` });
-   }
-   return parsed;
+      return breadcrumbs;
+   }, []);
 }
 
 export function createElement({
