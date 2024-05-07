@@ -9,6 +9,13 @@ This is a Single Page Application (SPA) project built with TypeScript. It utiliz
 -  **Album Photos Page**: Displays the photos of a specific album.
 -  **404 Page**: Error page displayed when a route is not found.
 
+## Usage
+
+1) `git clone https://github.com/Aliph0th/spa-routing.git`
+2) `cd spa-routing`
+3) `npm i`
+4) `npm run dev``
+
 ## Features
 
 -  **Routing**: The project uses a hash(`#`) routing mechanism to navigate between different pages without refreshing the whole page.
