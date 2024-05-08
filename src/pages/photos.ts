@@ -2,6 +2,7 @@ import { pageElement } from '../variables/constants';
 import { createElement, getPhotosById, isUserExists, redirectTo404 } from '../utils/helpers';
 import { toggleSpinner, wrapPhoto } from '../utils/render';
 import { scrollListenersPool } from '../variables/shared';
+import { IPhoto } from '../interfaces/photo';
 
 export async function Photos(userId: number, albumId: number) {
    let position = 0;
@@ -29,7 +30,7 @@ export async function Photos(userId: number, albumId: number) {
       position += photos.length;
       return photos;
    };
-   const append = photos => {
+   const append = (photos: IPhoto[]) => {
       pageElement.appendChild(
          createElement({
             type: 'div',

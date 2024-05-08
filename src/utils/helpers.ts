@@ -10,12 +10,15 @@ export async function fetchData<T extends IUser | IPhoto | IAlbum>(
    endpoint: string,
    query: Record<string, string | number> = {}
 ): Promise<T[]> {
-   const filteredQuery = Object.entries(query).reduce((accum, [key, value]) => {
-      if (value) {
-         accum[key] = value.toString();
-      }
-      return accum;
-   }, {});
+   const filteredQuery = Object.entries(query).reduce<Record<string, string>>(
+      (accum, [key, value]) => {
+         if (value) {
+            accum[key] = value.toString();
+         }
+         return accum;
+      },
+      {}
+   );
    try {
       const response = await fetch(`${API_URL}/${endpoint}?${new URLSearchParams(filteredQuery)}`);
       return (await response.json()) as T[];
@@ -26,12 +29,12 @@ export async function fetchData<T extends IUser | IPhoto | IAlbum>(
 }
 
 export function filterObject<T extends IUser | IPhoto | IAlbum>(
-   object: T,
+   object: Record<keyof T, T[keyof T]>,
    ...props: Array<keyof T>
 ) {
    return Object.keys(object)
       .filter(key => props.includes(key as keyof T))
-      .reduce((accum, key) => ((accum[key] = object[key]), accum), {});
+      .reduce((accum, key) => ((accum[key as keyof T] = object[key as keyof T]), accum), {} as T);
 }
 
 export async function getUsers() {
@@ -45,7 +48,7 @@ export async function getUsers() {
    }
    return CACHE.users;
 }
-export const getAlbumsById = async userId => {
+export const getAlbumsById = async (userId: number) => {
    if (!CACHE.albums[userId]) {
       const result = await fetchData<IAlbum>('albums', { userId });
       if (result.length) {
@@ -56,7 +59,7 @@ export const getAlbumsById = async userId => {
    }
    return CACHE.albums[userId];
 };
-export const getPhotosById = async (albumId, position) => {
+export const getPhotosById = async (albumId: number, position: number) => {
    CACHE.photos[albumId] ||= [];
    if (!CACHE.photos[albumId].slice(position, position + PHOTOS_PER_PAGE).length) {
       const result = await fetchData<IPhoto>('photos', {

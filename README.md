@@ -14,7 +14,7 @@ This is a Single Page Application (SPA) project built with TypeScript. It utiliz
 1) `git clone https://github.com/Aliph0th/spa-routing.git`
 2) `cd spa-routing`
 3) `npm i`
-4) `npm run dev``
+4) `npm run dev`
 
 ## Features
 

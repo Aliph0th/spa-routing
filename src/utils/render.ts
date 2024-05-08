@@ -5,7 +5,7 @@ import { IUser } from '../interfaces/user';
 import { breadcrumbsElement, pageElement } from '../variables/constants';
 import { createElement } from './helpers';
 
-export function toggleSpinner(isEnabled) {
+export function toggleSpinner(isEnabled: boolean) {
    if (isEnabled) {
       const spinner = createElement({ type: 'div', classNames: ['spinner'] });
       pageElement.appendChild(spinner);
